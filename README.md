@@ -2,7 +2,7 @@
 An API wrapper for interacting with YTMonster programmatically.
 
 Some basic use:
-```
+```py
 from YTMonsterClient import YTMonsterClient
 
 client = YTMonsterClient.YTMonsterClient('exampleuser', 'examplepassword')
