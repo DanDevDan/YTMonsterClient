@@ -13,7 +13,7 @@ setup(
     long_description_content_type='text/markdown',
     author='Signal',
     author_email='example@gmail.com',
-    url='https://github.com/vsantiago113/FMCAPIClient',
+    url='https://github.com/SignalDevX/YTMonsterClient',
     keywords=['YTMC'],
     python_requires='>=3.4.0',
     install_requires=[
