@@ -1,5 +1,6 @@
 import requests
 import json
+import lxml.html
 
 class YTMonsterClient():
     def __init__(self, username, password):
@@ -47,3 +48,13 @@ class YTMonsterClient():
                 x = False
 
         return channelid
+
+    def get_stats(self):
+        """Returns a dictionary of user-individual statistics."""
+        dashboard = self.session.get('https://www.ytmonster.net/dashboard')
+        doc = lxml.html.fromstring(dashboard.content)
+        credits = doc.xpath('/html/body/div[2]/div/div[2]/div[3]/div/div[1]/div[1]/div[1]/div/div[2]/div/text()')
+        credits = int(credits[0].replace(r'\xa', '').replace(',', ''))
+        membership = doc.xpath('/html/body/div[2]/div/div[2]/div[3]/div/div[1]/div[1]/div[2]/div/div[2]/div/text()')
+        membership = membership[0].replace(u'\xa0', u' ').replace(' ', '')
+        return {'membership': membership, 'credits': credits}
