@@ -12,4 +12,4 @@ print(client.get_channel_from_exchanges())
 ```
 
 ## Installation
-YTMonsterClient will be installable through pip. It is currently in active development and no releases have been made.
+```pip install YTMonsterClient```
