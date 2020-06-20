@@ -20,11 +20,15 @@ class YTMonsterClient():
         else:
             self.loggedin = False
 
-    def get_like_video_from_exchanges(self):
+    def login_check(self):
         if self.loggedin:
             pass
         else:
             raise Exception('Client failed to connect to the specified YTMonster account.')
+
+    def get_like_video_from_exchanges(self):
+        self.login_check()
+        
         x = True
         while x:
             response = self.session.get('https://www.ytmonster.net/api/exchangeView.php?type=likes').text
@@ -37,6 +41,8 @@ class YTMonsterClient():
         return videoID
 
     def get_channel_from_exchanges(self):
+        self.login_check()
+
         x = True
         while x:
             response = self.session.get('https://www.ytmonster.net/api/exchangeView.php?type=subscribers').text
@@ -51,6 +57,8 @@ class YTMonsterClient():
 
     def get_stats(self):
         """Returns a dictionary of user-individual statistics."""
+        self.login_check()
+
         dashboard = self.session.get('https://www.ytmonster.net/dashboard')
         doc = lxml.html.fromstring(dashboard.content)
         credits = doc.xpath('/html/body/div[2]/div/div[2]/div[3]/div/div[1]/div[1]/div[1]/div/div[2]/div/text()')
