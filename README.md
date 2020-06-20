@@ -1,4 +1,4 @@
-# YTMonster-API-Wrapper
+# YTMonsterClient - An Extensive API Wrapper
 An API wrapper for interacting with YTMonster programmatically.
 
 ## Some basic use:

@@ -38,6 +38,7 @@ class YTMonsterClient():
             else:
                 videoID = responsejson['url']
                 x = False
+                
         return videoID
 
     def get_channel_from_exchanges(self):
@@ -65,4 +66,5 @@ class YTMonsterClient():
         credits = int(credits[0].replace(r'\xa', '').replace(',', ''))
         membership = doc.xpath('/html/body/div[2]/div/div[2]/div[3]/div/div[1]/div[1]/div[2]/div/div[2]/div/text()')
         membership = membership[0].replace(u'\xa0', u' ').replace(' ', '')
+
         return {'membership': membership, 'credits': credits}
