@@ -24,8 +24,8 @@ class YTMonsterClient():
             pass
         else:
             raise Exception('Client failed to connect to the specified YTMonster account.')
-        x=True
-        while x == True:
+        x = True
+        while x:
             response = self.session.get('https://www.ytmonster.net/api/exchangeView.php?type=likes').text
             responsejson = json.loads(response)
             if responsejson['error'] == True:
@@ -34,3 +34,16 @@ class YTMonsterClient():
                 videoID = responsejson['url']
                 x = False
         return videoID
+
+    def get_channel_from_exchanges(self):
+        x = True
+        while x:
+            response = self.session.get('https://www.ytmonster.net/api/exchangeView.php?type=subscribers').text
+            responsejson = json.loads(response)
+            if responsejson['error'] == True:
+                pass
+            else:
+                channelid = responsejson['url']
+                x = False
+
+        return channelid
